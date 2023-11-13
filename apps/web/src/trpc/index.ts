@@ -11,7 +11,7 @@ export const appRouter = router({
     };
   }),
 
-  // this is mutate procedure for url shortening
+  // query: to get short url for target url
   getShortUrl: publicProcedure
     .input(
       z.object({
@@ -34,6 +34,7 @@ export const appRouter = router({
       };
     }),
 
+  // mutate: for url shortening (original -> short-url)
   shorten: publicProcedure
     .input(
       z.object({
@@ -65,6 +66,8 @@ export const appRouter = router({
 
       return { success: true };
     })
+
+  //
 });
 
 export type AppRouter = typeof appRouter;
