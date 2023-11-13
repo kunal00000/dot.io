@@ -18,11 +18,21 @@ model User {
 }
 
 model Link {
-  id        String   @id @default(cuid())
-  shortUrl  String   @unique // shortened url (e.g. https://dot.io/23c65ex)
+  id        String @id @default(cuid())
+  shortkey  String @unique // shortened url (e.g. 23c65ex)
   targetUrl String // target URL of the link (e.g. https://google.com)
+
+  title       String? // OG title for the link (e.g. Dot.io - Url Shortner)
+  description String? @db.VarChar(280) // OG description for the link
+  image       String?
+
+  clicks      Int       @default(0) // number of clicks
+  lastClicked DateTime? // when the link was last clicked
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  User      User?    @relation(fields: [userId], references: [id])
-  userId    Int?
+
+  // User who created the link
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?
 }
