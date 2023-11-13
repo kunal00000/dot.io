@@ -22,13 +22,16 @@ model Link {
   shortkey  String @unique // shortened url (e.g. 23c65ex)
   targetUrl String // target URL of the link (e.g. https://google.com)
 
-  title       String? // OG title for the link (e.g. Dot.io - Url Shortner)
-  description String? @db.VarChar(280) // OG description for the link
+  // OG metadata
+  title       String
+  description String? @db.VarChar(280)
   image       String?
 
-  clicks      Int       @default(0) // number of clicks
-  lastClicked DateTime? // when the link was last clicked
+  // Analytics
+  clicks      Int       @default(0)
+  lastClicked DateTime?
 
+  // Timestamp
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
