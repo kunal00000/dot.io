@@ -14,6 +14,9 @@ export default function Provider({ children }: PropsWithChildren) {
       links: [
         httpBatchLink({
           url: 'http://localhost:3000/api/trpc'
+        }),
+        httpBatchLink({
+          url: 'https://dot-io-web.vercel.app/api/trpc'
         })
       ]
     })
