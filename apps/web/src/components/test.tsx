@@ -1,6 +1,7 @@
 'use client';
 
 import { trpc } from '@/app/_trpc/client';
+import { NEXT_PUBLIC_VERCEL_URL } from '@/lib/config';
 import { useState } from 'react';
 
 const Test = () => {
@@ -40,11 +41,11 @@ const Test = () => {
         {links.data?.map((link) => (
           <li key={link.id}>
             <a
-              href={`http://localhost:3000/${link.shortkey}`}
+              href={`${NEXT_PUBLIC_VERCEL_URL}/${link.shortkey}`}
               target='_blank'
               rel='noopener noreferrer'
             >
-              http://localhost:3000/{link.shortkey}
+              {NEXT_PUBLIC_VERCEL_URL}/{link.shortkey}
             </a>
           </li>
         ))}

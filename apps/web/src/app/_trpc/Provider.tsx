@@ -6,6 +6,7 @@ import React, { PropsWithChildren, useState } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { trpc } from './client';
+import { NEXT_PUBLIC_VERCEL_URL } from '@/lib/config';
 
 export default function Provider({ children }: PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient({}));
@@ -13,10 +14,7 @@ export default function Provider({ children }: PropsWithChildren) {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: 'http://localhost:3000/api/trpc'
-        }),
-        httpBatchLink({
-          url: 'https://dot-io-web.vercel.app/api/trpc'
+          url: `${NEXT_PUBLIC_VERCEL_URL}/api/trpc`
         })
       ]
     })
